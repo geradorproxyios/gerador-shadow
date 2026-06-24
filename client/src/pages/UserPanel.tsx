@@ -14,8 +14,6 @@ const DURATION_OPTIONS: { value: Duration; label: string; credits: number }[] = 
   { value: "30", label: "30 Dias", credits: 55 },
 ];
 
-// ─── Header ──────────────────────────────────────────────────────────────────
-
 function UserHeader({ credits, onLogout }: { credits: number; onLogout: () => void }) {
   return (
     <div className="bg-white border-b border-gray-100 px-4 py-3 flex items-center justify-between sticky top-0 z-10 shadow-sm">
@@ -26,7 +24,7 @@ function UserHeader({ credits, onLogout }: { credits: number; onLogout: () => vo
       <div className="flex items-center gap-3">
         <div className="text-right">
           <p className="text-xs text-muted-foreground leading-none">Créditos Disponíveis</p>
-          <p className="text-2xl font-extrabold text-pink-500 leading-tight">{credits.toLocaleString()}</p>
+          <p className="text-2xl font-extrabold text-emerald-500 leading-tight">{credits.toLocaleString()}</p>
         </div>
         <button
           onClick={onLogout}
@@ -40,30 +38,20 @@ function UserHeader({ credits, onLogout }: { credits: number; onLogout: () => vo
   );
 }
 
-// ─── Tab Bar ─────────────────────────────────────────────────────────────────
-
 function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void }) {
   return (
     <div className="flex border-b border-gray-100 bg-white px-4">
-      <button
-        onClick={() => onChange("generator")}
-        className={`tab-underline flex items-center gap-1.5 mr-6 ${active === "generator" ? "active" : ""}`}
-      >
+      <button onClick={() => onChange("generator")} className={`tab-underline flex items-center gap-1.5 mr-6 ${active === "generator" ? "active" : ""}`}>
         <Zap size={15} />
         Gerador
       </button>
-      <button
-        onClick={() => onChange("dashboard")}
-        className={`tab-underline flex items-center gap-1.5 ${active === "dashboard" ? "active" : ""}`}
-      >
+      <button onClick={() => onChange("dashboard")} className={`tab-underline flex items-center gap-1.5 ${active === "dashboard" ? "active" : ""}`}>
         <CreditCard size={15} />
         Dashboard
       </button>
     </div>
   );
 }
-
-// ─── Generator Tab ────────────────────────────────────────────────────────────
 
 function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
   const [selectedDuration, setSelectedDuration] = useState<Duration>("1");
@@ -104,7 +92,7 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
         href="https://whatsapp.com/channel/0029VbCjOYq1SWstb7YOtG11"
         target="_blank"
         rel="noopener noreferrer"
-        className="w-full h-12 rounded-2xl font-bold text-base flex items-center justify-center gap-2 bg-pink-500 hover:bg-pink-600 text-white transition-colors shadow-lg"
+        className="w-full h-12 rounded-2xl font-bold text-base flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white transition-colors shadow-lg"
         style={{ boxShadow: "0 4px 20px rgba(16, 185, 129, 0.3)" }}
       >
         <Bell size={18} />
@@ -114,15 +102,14 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
       {/* Duration Selection */}
       <div className="bg-white rounded-2xl p-5 shadow-card border border-gray-100">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-9 h-9 rounded-xl bg-purple-50 flex items-center justify-center">
-            <Clock size={18} className="text-purple-600" />
+          <div className="w-9 h-9 rounded-xl bg-blue-50 flex items-center justify-center">
+            <Clock size={18} className="text-blue-600" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-800 text-base">Duração das Keys</h3>
             <p className="text-xs text-muted-foreground">Escolha o tempo de validade</p>
           </div>
         </div>
-
         <div className="grid grid-cols-2 gap-3">
           {DURATION_OPTIONS.map((opt) => (
             <button
@@ -131,7 +118,7 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
               className={`duration-card text-left ${selectedDuration === opt.value ? "selected" : ""}`}
             >
               <p className="font-bold text-gray-800 text-base">{opt.label}</p>
-              <p className={`text-sm font-semibold mt-0.5 ${selectedDuration === opt.value ? "text-purple-600" : "text-muted-foreground"}`}>
+              <p className={`text-sm font-semibold mt-0.5 ${selectedDuration === opt.value ? "text-blue-600" : "text-muted-foreground"}`}>
                 {opt.credits} créditos
               </p>
             </button>
@@ -142,34 +129,21 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
       {/* Quantity */}
       <div className="bg-white rounded-2xl p-5 shadow-card border border-gray-100">
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-9 h-9 rounded-xl bg-pink-50 flex items-center justify-center">
-            <Zap size={18} className="text-pink-600" />
+          <div className="w-9 h-9 rounded-xl bg-emerald-50 flex items-center justify-center">
+            <Zap size={18} className="text-emerald-600" />
           </div>
           <div>
             <h3 className="font-semibold text-gray-800 text-base">Quantidade</h3>
             <p className="text-xs text-muted-foreground">Gere até 50 keys por vez</p>
           </div>
         </div>
-
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-            className="qty-btn"
-          >
-            −
-          </button>
+          <button onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="qty-btn">−</button>
           <div className="flex-1 h-14 rounded-2xl bg-gray-50 border-2 border-gray-200 flex items-center justify-center">
             <span className="text-2xl font-bold text-gray-800">{quantity}</span>
           </div>
-          <button
-            onClick={() => setQuantity((q) => Math.min(50, q + 1))}
-            className="qty-btn"
-          >
-            +
-          </button>
+          <button onClick={() => setQuantity((q) => Math.min(50, q + 1))} className="qty-btn">+</button>
         </div>
-
-        {/* Cost preview */}
         <div className="mt-3 flex items-center justify-between bg-gray-50 rounded-xl px-4 py-2.5 border border-gray-100">
           <span className="text-sm text-muted-foreground">Custo total</span>
           <span className="font-bold text-gray-800">{totalCost} créditos</span>
@@ -184,15 +158,9 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
         style={{ boxShadow: "0 4px 20px rgba(37, 99, 235, 0.3)" }}
       >
         {generateMutation.isPending ? (
-          <>
-            <span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />
-            Gerando...
-          </>
+          <><span className="w-5 h-5 border-2 border-white/40 border-t-white rounded-full animate-spin" />Gerando...</>
         ) : (
-          <>
-            <Key size={18} />
-            Gerar {quantity} Key{quantity > 1 ? "s" : ""}
-          </>
+          <><Key size={18} />Gerar {quantity} Key{quantity > 1 ? "s" : ""}</>
         )}
       </button>
 
@@ -218,11 +186,7 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
             </div>
             <button
               onClick={copyAll}
-              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all ${
-                copiedAll
-                  ? "bg-pink-50 text-pink-600 border border-pink-200"
-                  : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-              }`}
+              className={`flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all ${copiedAll ? "bg-emerald-50 text-emerald-600 border border-emerald-200" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
             >
               {copiedAll ? <Check size={13} /> : <Copy size={13} />}
               {copiedAll ? "Copiado!" : "Copiar tudo"}
@@ -234,11 +198,7 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
                 <span className="text-xs font-mono text-gray-700 truncate flex-1">{key}</span>
                 <button
                   onClick={() => copyKey(key, i)}
-                  className={`ml-3 p-1.5 rounded-lg transition-all flex-shrink-0 ${
-                    copiedIndex === i
-                      ? "bg-pink-50 text-pink-600"
-                      : "hover:bg-gray-100 text-gray-400"
-                  }`}
+                  className={`ml-3 p-1.5 rounded-lg transition-all flex-shrink-0 ${copiedIndex === i ? "bg-emerald-50 text-emerald-600" : "hover:bg-gray-100 text-gray-400"}`}
                 >
                   {copiedIndex === i ? <Check size={14} /> : <Copy size={14} />}
                 </button>
@@ -251,55 +211,27 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
   );
 }
 
-// ─── Dashboard Tab ────────────────────────────────────────────────────────────
-
 function DashboardTab() {
   const { data: dash, isLoading } = trpc.generator.dashboard.useQuery();
 
   if (isLoading) {
     return (
       <div className="p-4 flex flex-col gap-4">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="h-24 bg-gray-100 rounded-2xl animate-pulse" />
-        ))}
+        {[1, 2, 3].map((i) => <div key={i} className="h-24 bg-gray-100 rounded-2xl animate-pulse" />)}
       </div>
     );
   }
 
   const cards = [
-    {
-      label: "Créditos Disponíveis",
-      value: (dash?.credits ?? 0).toLocaleString(),
-      icon: <CreditCard size={22} />,
-      color: "text-purple-600",
-      bg: "bg-purple-50",
-      border: "border-purple-100",
-    },
-    {
-      label: "Keys Geradas",
-      value: (dash?.keysGenerated ?? 0).toLocaleString(),
-      icon: <Key size={22} />,
-      color: "text-pink-600",
-      bg: "bg-pink-50",
-      border: "border-pink-100",
-    },
-    {
-      label: "Créditos Gastos",
-      value: (dash?.creditsSpent ?? 0).toLocaleString(),
-      icon: <TrendingDown size={22} />,
-      color: "text-orange-500",
-      bg: "bg-orange-50",
-      border: "border-orange-100",
-    },
+    { label: "Créditos Disponíveis", value: (dash?.credits ?? 0).toLocaleString(), icon: <CreditCard size={22} />, color: "text-blue-600", bg: "bg-blue-50", border: "border-blue-100" },
+    { label: "Keys Geradas", value: (dash?.keysGenerated ?? 0).toLocaleString(), icon: <Key size={22} />, color: "text-emerald-600", bg: "bg-emerald-50", border: "border-emerald-100" },
+    { label: "Créditos Gastos", value: (dash?.creditsSpent ?? 0).toLocaleString(), icon: <TrendingDown size={22} />, color: "text-orange-500", bg: "bg-orange-50", border: "border-orange-100" },
   ];
 
   return (
     <div className="p-4 flex flex-col gap-4">
       {cards.map((card) => (
-        <div
-          key={card.label}
-          className={`bg-white rounded-2xl p-5 shadow-card border ${card.border} flex items-center gap-4`}
-        >
+        <div key={card.label} className={`bg-white rounded-2xl p-5 shadow-card border ${card.border} flex items-center gap-4`}>
           <div className={`w-12 h-12 rounded-2xl ${card.bg} flex items-center justify-center ${card.color} flex-shrink-0`}>
             {card.icon}
           </div>
@@ -313,8 +245,6 @@ function DashboardTab() {
   );
 }
 
-// ─── Main User Panel ──────────────────────────────────────────────────────────
-
 export default function UserPanel() {
   const [activeTab, setActiveTab] = useState<Tab>("generator");
   const [, navigate] = useLocation();
@@ -325,7 +255,7 @@ export default function UserPanel() {
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <span className="w-8 h-8 border-4 border-purple-200 border-t-blue-600 rounded-full animate-spin" />
+        <span className="w-8 h-8 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin" />
       </div>
     );
   }
@@ -337,18 +267,12 @@ export default function UserPanel() {
 
   const credits = dashQuery.data?.credits ?? (user as any).credits ?? 0;
 
-  const handleGenerated = () => {
-    dashQuery.refetch();
-    refetch();
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <UserHeader credits={credits} onLogout={() => logoutMutation.mutate()} />
       <TabBar active={activeTab} onChange={setActiveTab} />
-
       <div className="pb-8">
-        {activeTab === "generator" && <GeneratorTab onGenerated={handleGenerated} />}
+        {activeTab === "generator" && <GeneratorTab onGenerated={() => { dashQuery.refetch(); refetch(); }} />}
         {activeTab === "dashboard" && <DashboardTab />}
       </div>
     </div>

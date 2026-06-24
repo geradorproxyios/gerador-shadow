@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <div
       className="min-h-screen flex flex-col items-center justify-center px-4 py-10"
-      style={{ background: "linear-gradient(160deg, #F3E8FF 0%, #FCE7F3 100%)" }}
+      style={{ background: "linear-gradient(160deg, #EFF6FF 0%, #ECFDF5 100%)" }}
     >
       {/* Card */}
       <div className="w-full max-w-sm bg-white rounded-3xl shadow-card p-8 flex flex-col gap-6">
@@ -59,7 +59,7 @@ export default function Login() {
               placeholder="Usuário"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="pl-10 h-12 rounded-xl border-purple-200 bg-purple-50 text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-100"
+      className="pl-10 h-12 rounded-xl border-blue-200 bg-blue-50 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               autoComplete="username"
               disabled={loginMutation.isPending}
             />
@@ -75,7 +75,7 @@ export default function Login() {
               placeholder="Senha"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pl-10 pr-10 h-12 rounded-xl border-purple-200 bg-purple-50 text-sm focus:border-purple-500 focus:ring-2 focus:ring-purple-100"
+      className="pl-10 pr-10 h-12 rounded-xl border-blue-200 bg-blue-50 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
               autoComplete="current-password"
               disabled={loginMutation.isPending}
             />
