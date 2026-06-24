@@ -109,10 +109,12 @@
 
 /* Quantity control */
 .qty-btn {
-  @apply w-14 h-14 rounded-2xl bg-gray-100 flex items-center justify-center text-xl font-semibold text-gray-700 cursor-pointer transition-all duration-100 select-none;
+  @apply w-14 h-14 rounded-2xl flex items-center justify-center text-xl font-semibold cursor-pointer transition-all duration-100 select-none;
+  background: linear-gradient(135deg, #9333ea, #ec4899);
+  color: white;
 }
 .qty-btn:hover {
-  @apply bg-gray-200;
+  opacity: 0.9;
 }
 .qty-btn:active {
   transform: scale(0.95);

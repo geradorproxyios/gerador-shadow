@@ -164,7 +164,6 @@ function GeneratorTab({ onGenerated }: { onGenerated: () => void }) {
           <button
             onClick={() => setQuantity((q) => Math.min(50, q + 1))}
             className="qty-btn"
-            style={{ background: "linear-gradient(135deg, #2563EB, #10B981)", color: "white" }}
           >
             +
           </button>
