@@ -63,7 +63,6 @@ function TabBar({ active, onChange }: { active: Tab; onChange: (t: Tab) => void 
     { id: "users", label: "Usuários", icon: <Users size={15} /> },
     { id: "keys", label: "Estoque", icon: <Key size={15} /> },
     { id: "stats", label: "Estatísticas", icon: <BarChart3 size={15} /> },
-    { id: "audit", label: "Auditoria", icon: <Users size={15} /> },
   ];
   return (
     <div className="flex border-b border-gray-100 bg-white px-4">
