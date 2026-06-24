@@ -4,27 +4,17 @@ export function Logo({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
 
   return (
     <div className="flex items-center gap-3">
-      {/* S logo with gradient background */}
-      <div
+      <img
+        src="/logo.png"
+        alt="Shadow Logo"
         style={{
           width: iconSize,
           height: iconSize,
-          borderRadius: "30%",
+          borderRadius: "20%",
           flexShrink: 0,
-          background: "linear-gradient(135deg, #9333ea, #ec4899)",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          color: "white",
-          fontWeight: 900,
-          fontSize: iconSize * 0.55,
-          fontFamily: "sans-serif",
+          objectFit: "cover",
         }}
-      >
-        S
-      </div>
-
-      {/* Text */}
+      />
       <div>
         <div className={`font-extrabold leading-tight ${textClass} text-gradient`}>
           SHADOW<br />OFICIAL
